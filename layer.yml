@@ -1,0 +1,21 @@
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  ContentUri:
+    Type: String
+
+  ParameterName:
+    Type: String
+
+Resources:
+  Layer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      ContentUri: !Ref ContentUri
+
+  ParameterLayerArn:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: !Ref ParameterName
+      Type: String
+      Value: !Ref Layer
