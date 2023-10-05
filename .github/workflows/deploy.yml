@@ -9,9 +9,6 @@ permissions:
   id-token: write
   contents: read
 
-env:
-  SAM_ARTIFACT_BUCKET: ${{ secrets.ARTIFACT_BUCKET }}
-
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -29,6 +26,8 @@ jobs:
       - run: pip install poetry
       - run: make build
       - run: make package
+        env:
+          SAM_ARTIFACT_BUCKET: ${{ secrets.BUCKET_NAME_LAMBDA_ARTIFACT }}
       - run: tar cf layers.tar *
       - uses: actions/upload-artifact@v3
         with:
