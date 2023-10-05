@@ -6,10 +6,11 @@ authors = ["sinofseven <em.s.00001@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-boto3 = "1.26.59"
-boto3-stubs = {version = "1.26.59", extras = ["dynamodb", "s3", "sqs"]}
-psycopg2-binary = "^2.9.5"
+python = "^3.11"
+boto3-stubs = {version = "1.28.59", extras = ["s3", "sqs", "ssm"]}
+boto3 = "1.28.59"
+requests = "2.31.0"
+pysocks = "1.7.1"
 
 
 [build-system]

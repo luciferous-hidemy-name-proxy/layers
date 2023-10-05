@@ -7,4 +7,4 @@ Resources:
       TemplateURL: ./layer.yml
       Parameters:
         ContentUri: layers/base
-        ParameterName: /LayerTemplate/Layer/Base
+        ParameterName: /LuciferousHidemyNameProxy/Layer/Base

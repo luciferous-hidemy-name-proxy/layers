@@ -1,6 +1,6 @@
 SHELL = /usr/bin/env bash -xeuo pipefail
 
-stack_name:=""
+stack_name:=luciferous-hidemy-name-proxy-layers
 
 clean:
 	find layers -type d -name python | xargs rm -rf
@@ -12,7 +12,7 @@ build:
 package:
 	sam package \
 		--s3-bucket ${SAM_ARTIFACT_BUCKET} \
-		--s3-prefix layer \
+		--s3-prefix layers \
 		--template-file sam.yml \
 		--output-template-file template.yml
 
@@ -20,6 +20,7 @@ deploy:
 	sam deploy \
 		--stack-name $(stack_name) \
 		--template-file template.yml \
+		--role-arn ${IAM_ROLE} \
 		--no-fail-on-empty-changeset
 
 .PHONY: \

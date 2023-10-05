@@ -23,7 +23,7 @@ jobs:
           python-version: 3.9.13
       - uses: aws-actions/configure-aws-credentials@v1-node16
         with:
-          role-to-assume: ${{ secrets.ARN_IAM_ROLE }}
+          role-to-assume: ${{ secrets.ROLE_ARN_GITHUB_ACTIONS_CALL_CLOUDFORMATION }}
           aws-region: ap-northeast-1
       - uses: aws-actions/setup-sam@v2
       - run: pip install poetry
@@ -34,4 +34,7 @@ jobs:
         with:
           name: layers.tar
           path: layers.tar
-      - run: make deploy
+      - name: deploy
+        env:
+          IAM_ROLE: ${{ secrets.ROLE_ARN_CLOUD_FORMATION_DEPLOY }}
+        run: make deploy
