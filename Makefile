@@ -21,6 +21,7 @@ deploy:
 		--stack-name $(stack_name) \
 		--template-file template.yml \
 		--role-arn ${IAM_ROLE} \
+		--capabilities CAPABILITY_AUTO_EXPAND \
 		--no-fail-on-empty-changeset
 
 .PHONY: \
