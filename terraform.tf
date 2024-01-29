@@ -31,6 +31,6 @@ module "base" {
   parameter_name   = "${local.parameter_prefix}/Base"
 }
 
-output "base_layer_arn" {
-  value = module.base.layer_arn
+output "ssm_parameter_name_base_layer" {
+  value = module.base.ssm_parameter_name_layer_arn
 }
