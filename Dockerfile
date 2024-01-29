@@ -1,4 +1,4 @@
-from public.ecr.aws/sam/build-python3.11:latest
+from public.ecr.aws/sam/build-python3.12:latest
 
 run mkdir /tmp/layer
 workdir /tmp/layer
