@@ -9,6 +9,9 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  TF_VAR_ARTIFACT_BUCKET: ${{ secrets.BUCKET_NAME_LAMBDA_ARTIFACT }}
+
 jobs:
   deploy:
     runs-on: ubuntu-22.04
@@ -27,12 +30,9 @@ jobs:
           aws-region: ap-northeast-1
       - run: pip install poetry
       - run: make build
-      - name: deploy
-        env:
-          TF_VAR_ARTIFACT_BUCKET: ${{ secrets.BUCKET_NAME_LAMBDA_ARTIFACT }}
-        run: |
-          terraform init
-          terraform apply -auto-approve
+      - run: terraform init
+      - run: terraform apply -auto-approve
+      - run: terraform output
       - run: tar cf layers.tar *
         if: always()
       - uses: actions/upload-artifact@v3

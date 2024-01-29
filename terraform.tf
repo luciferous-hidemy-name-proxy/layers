@@ -30,3 +30,7 @@ module "base" {
   source_directory = "layers/base"
   parameter_name   = "${local.parameter_prefix}/Base"
 }
+
+output "base_layer_arn" {
+  value = module.base.layer_arn
+}
